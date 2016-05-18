@@ -14,6 +14,9 @@
 		1A05A0AF1CE36D0C000825DA /* DC_ORM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A05A0AD1CE36D0C000825DA /* DC_ORM.xcdatamodeld */; };
 		1A05A0B11CE36D0C000825DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A05A0B01CE36D0C000825DA /* Assets.xcassets */; };
 		1A05A0B41CE36D0C000825DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A05A0B21CE36D0C000825DA /* LaunchScreen.storyboard */; };
+		1A05A0BD1CE36D25000825DA /* NSObject+DC_Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05A0BC1CE36D25000825DA /* NSObject+DC_Properties.m */; };
+		1A05A0DC1CE3799D000825DA /* user.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05A0DB1CE3799D000825DA /* user.m */; };
+		1A05A0DF1CE8606F000825DA /* NSObject+DC_Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05A0DE1CE8606F000825DA /* NSObject+DC_Reflection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,12 @@
 		1A05A0B01CE36D0C000825DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A05A0B31CE36D0C000825DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A05A0B51CE36D0C000825DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A05A0BB1CE36D25000825DA /* NSObject+DC_Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DC_Properties.h"; sourceTree = "<group>"; };
+		1A05A0BC1CE36D25000825DA /* NSObject+DC_Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DC_Properties.m"; sourceTree = "<group>"; };
+		1A05A0DA1CE3799D000825DA /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
+		1A05A0DB1CE3799D000825DA /* user.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = user.m; sourceTree = "<group>"; };
+		1A05A0DD1CE8606F000825DA /* NSObject+DC_Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DC_Reflection.h"; sourceTree = "<group>"; };
+		1A05A0DE1CE8606F000825DA /* NSObject+DC_Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DC_Reflection.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +53,12 @@
 		1A05A0951CE36D0C000825DA = {
 			isa = PBXGroup;
 			children = (
+				1A05A0DD1CE8606F000825DA /* NSObject+DC_Reflection.h */,
+				1A05A0DE1CE8606F000825DA /* NSObject+DC_Reflection.m */,
+				1A05A0DA1CE3799D000825DA /* user.h */,
+				1A05A0DB1CE3799D000825DA /* user.m */,
+				1A05A0BB1CE36D25000825DA /* NSObject+DC_Properties.h */,
+				1A05A0BC1CE36D25000825DA /* NSObject+DC_Properties.m */,
 				1A05A0A01CE36D0C000825DA /* DC_ORM */,
 				1A05A09F1CE36D0C000825DA /* Products */,
 			);
@@ -156,6 +171,9 @@
 				1A05A0A61CE36D0C000825DA /* AppDelegate.m in Sources */,
 				1A05A0A31CE36D0C000825DA /* main.m in Sources */,
 				1A05A0AF1CE36D0C000825DA /* DC_ORM.xcdatamodeld in Sources */,
+				1A05A0DF1CE8606F000825DA /* NSObject+DC_Reflection.m in Sources */,
+				1A05A0DC1CE3799D000825DA /* user.m in Sources */,
+				1A05A0BD1CE36D25000825DA /* NSObject+DC_Properties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +324,7 @@
 				1A05A0BA1CE36D0C000825DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

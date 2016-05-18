@@ -7,7 +7,9 @@
 //
 
 #import "ViewController.h"
-
+#import "user.h"
+#import "NSObject+DC_Reflection.h"
+#import "NSObject+DC_Properties.h"
 @interface ViewController ()
 
 @end
@@ -17,6 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+//    NSLog(@"%@",[user dc_PropertiesDetailDictionary]);
+//    [user dc_PropertiesDetailDictionary];
+     BOOL theBool = YES;
+    NSDictionary *dic = @{
+                          @"theBOOL" : @(theBool)
+                          };
+    NSError *error = nil;
+    user *theUser = [[user alloc] dc_convertToModelFromDictionary:dic error:&error];
+   
+   
+
 }
 
 - (void)didReceiveMemoryWarning {
