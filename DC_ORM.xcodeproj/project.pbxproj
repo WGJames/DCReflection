@@ -17,6 +17,8 @@
 		1A05A0BD1CE36D25000825DA /* NSObject+DC_Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05A0BC1CE36D25000825DA /* NSObject+DC_Properties.m */; };
 		1A05A0DC1CE3799D000825DA /* user.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05A0DB1CE3799D000825DA /* user.m */; };
 		1A05A0DF1CE8606F000825DA /* NSObject+DC_Reflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A05A0DE1CE8606F000825DA /* NSObject+DC_Reflection.m */; };
+		1A346C881CF9398F0064908C /* NSObject+DC_Coding.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A346C871CF9398F0064908C /* NSObject+DC_Coding.m */; };
+		1A346C8E1CFA8ACF0064908C /* NSObject+DC_JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A346C8D1CFA8ACF0064908C /* NSObject+DC_JSON.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,10 @@
 		1A05A0DB1CE3799D000825DA /* user.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = user.m; sourceTree = "<group>"; };
 		1A05A0DD1CE8606F000825DA /* NSObject+DC_Reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DC_Reflection.h"; sourceTree = "<group>"; };
 		1A05A0DE1CE8606F000825DA /* NSObject+DC_Reflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DC_Reflection.m"; sourceTree = "<group>"; };
+		1A346C861CF9398F0064908C /* NSObject+DC_Coding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DC_Coding.h"; sourceTree = "<group>"; };
+		1A346C871CF9398F0064908C /* NSObject+DC_Coding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DC_Coding.m"; sourceTree = "<group>"; };
+		1A346C8C1CFA8ACF0064908C /* NSObject+DC_JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DC_JSON.h"; sourceTree = "<group>"; };
+		1A346C8D1CFA8ACF0064908C /* NSObject+DC_JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DC_JSON.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,10 @@
 		1A05A0951CE36D0C000825DA = {
 			isa = PBXGroup;
 			children = (
+				1A346C8C1CFA8ACF0064908C /* NSObject+DC_JSON.h */,
+				1A346C8D1CFA8ACF0064908C /* NSObject+DC_JSON.m */,
+				1A346C861CF9398F0064908C /* NSObject+DC_Coding.h */,
+				1A346C871CF9398F0064908C /* NSObject+DC_Coding.m */,
 				1A05A0DD1CE8606F000825DA /* NSObject+DC_Reflection.h */,
 				1A05A0DE1CE8606F000825DA /* NSObject+DC_Reflection.m */,
 				1A05A0DA1CE3799D000825DA /* user.h */,
@@ -167,10 +177,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A346C8E1CFA8ACF0064908C /* NSObject+DC_JSON.m in Sources */,
 				1A05A0A91CE36D0C000825DA /* ViewController.m in Sources */,
 				1A05A0A61CE36D0C000825DA /* AppDelegate.m in Sources */,
 				1A05A0A31CE36D0C000825DA /* main.m in Sources */,
 				1A05A0AF1CE36D0C000825DA /* DC_ORM.xcdatamodeld in Sources */,
+				1A346C881CF9398F0064908C /* NSObject+DC_Coding.m in Sources */,
 				1A05A0DF1CE8606F000825DA /* NSObject+DC_Reflection.m in Sources */,
 				1A05A0DC1CE3799D000825DA /* user.m in Sources */,
 				1A05A0BD1CE36D25000825DA /* NSObject+DC_Properties.m in Sources */,

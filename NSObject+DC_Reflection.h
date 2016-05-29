@@ -11,4 +11,13 @@
 @interface NSObject (DC_Reflection)
 - (instancetype)dc_convertToModelFromDictionary:(NSDictionary *)dictionary error:(NSError **)error;
 - (NSDictionary *)dc_convertToDictionaryFromModel;
+
++ (void)dc_setClassReflectIngoredList:(NSArray *)ingoredList;
+
++ (void)dc_setClassReflectAllowedList:(NSArray *)allowrdList;
+
+- (void)dc_setObjectReflectIngoredList:(NSArray *)ingoredList;
+
+- (void)dc_setObjectReflectAllowedList:(NSArray *)allowedList;
+
 @end

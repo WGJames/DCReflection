@@ -9,15 +9,12 @@
 #import "NSObject+DC_Properties.h"
 #import <objc/runtime.h>
 
-@interface NSObject ()
-@property (nonatomic, strong) NSDictionary *propertyDetailDictionary;
-@end
-
 @implementation NSObject (DC_Properties)
+
 static void *DCPropertiesDictionary = (void *)@"DCPropertiesDictionary";
 static void *DCBasicTypesDictionary = (void *)@"DCBasicTypesDictionary";
 
-+ (NSDictionary *)dc_PropertiesDetailDictionary
++ (NSDictionary *)dc_propertiesDetailDictionary
 {
     NSDictionary *propertiesDetailDictionary = objc_getAssociatedObject(self, DCPropertiesDictionary);
     if (propertiesDetailDictionary == nil) {
@@ -60,6 +57,19 @@ static void *DCBasicTypesDictionary = (void *)@"DCBasicTypesDictionary";
     free(properties);
 }
 
++ (void)dc_enumerateKeysAndClassNameUsingBlock:(void (^)(NSString *key, NSString *className, BOOL *stop))keyBlock
+{
+    BOOL isStop = NO;
+    NSDictionary *propertiesDictionary = [self dc_propertiesDetailDictionary];
+    for (NSString *key in propertiesDictionary.allKeys) {
+        if (keyBlock) {
+            NSString *className = [propertiesDictionary objectForKey:key];
+            keyBlock(key,className,&isStop);
+        }
+        if (isStop) break;
+    }
+}
+
 + (NSString *)dc_getIdClassNameWithAttributeName:(NSString *)attributeName
 {
     NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"@\""];
@@ -92,5 +102,11 @@ static void *DCBasicTypesDictionary = (void *)@"DCBasicTypesDictionary";
     } else {
         return typesDictionary;
     }
+}
+
++ (BOOL)dc_validateClassIsBasicType:(NSString *)className
+{
+    NSArray *classList = [self dc_BasicTypesDictionary].allValues;
+    return [classList containsObject:className];
 }
 @end

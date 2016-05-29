@@ -13,30 +13,15 @@
 {
     NSObject *object = [self init];
     if (object) {
-        [object dc_enumerateKeysAndPropertyClassesUsingBlock:^(NSString *theKey,NSString *propertyClass ,BOOL *stop) {
-            id value = [dictionary objectForKey:theKey];
-            BOOL isSuccess = [self dc_validateValueForKey:theKey Value:value Error:error];
+        [[self class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key,NSString *className ,BOOL *stop) {
+            id value = [dictionary objectForKey:key];
+            BOOL isSuccess = [self dc_validateValueForKey:key Value:value Error:error];
             if (isSuccess) {
                 NSLog(@"can convert to");
             }
-            
         }];
     }
     return object;
-}
-
-- (void)dc_enumerateKeysAndPropertyClassesUsingBlock:(void (^)(NSString *theKey,NSString *propertyClass, BOOL *stop))keyBlock
-{
-    BOOL isStop = NO;
-    NSDictionary *propertiesDictionary = [[self class] dc_PropertiesDetailDictionary];
-    NSArray *keysList = [propertiesDictionary allKeys];
-    for (NSString *theKey in keysList) {
-        NSString *propertyClass = [propertiesDictionary objectForKey:theKey];
-        if (keyBlock) {
-            keyBlock(theKey, propertyClass, &isStop);
-        }
-        if (isStop) break;
-    }
 }
 
 - (BOOL)dc_validateValueForKey:(NSString *)key Value:(id)value Error:(NSError **)error
@@ -49,8 +34,29 @@
 
 - (NSDictionary *)dc_convertToDictionaryFromModel
 {
-    NSDictionary *propertyDictionary = [[self class] dc_PropertiesDetailDictionary];
+    NSDictionary *propertyDictionary = [[self class] dc_propertiesDetailDictionary];
     NSArray *keysList = [propertyDictionary allKeys];
     return [self dictionaryWithValuesForKeys:keysList];
 }
+
++ (void)dc_setClassReflectIngoredList:(NSArray *)ingoredList
+{
+    
+}
+
++ (void)dc_setClassReflectAllowedList:(NSArray *)allowrdList
+{
+    
+}
+
+- (void)dc_setObjectReflectIngoredList:(NSArray *)ingoredList
+{
+    
+}
+
+- (void)dc_setObjectReflectAllowedList:(NSArray *)allowedList
+{
+    
+}
+
 @end
