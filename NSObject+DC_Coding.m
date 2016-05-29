@@ -34,8 +34,9 @@
 {
     NSObject *object = [self init];
     if (object) {
-        [[object class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
-            
+        [[self class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
+            id value = [decoder decodeObjectForKey:key];
+            [self setValue:value forKey:key];
         }];
     }
     return object;
@@ -43,7 +44,10 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    
+    [[self class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
+        id value = [self valueForKey:key];
+        [encoder encodeObject:value forKey:key];
+    }];
 }
 
 
