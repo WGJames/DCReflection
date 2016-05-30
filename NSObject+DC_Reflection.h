@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (DC_Reflection)
-- (instancetype)dc_convertToModelFromDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+
+- (instancetype)dc_initObjectFromDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+
 - (NSDictionary *)dc_convertToDictionaryFromModel;
 
 + (void)dc_setClassReflectIngoredList:(NSArray *)ingoredList;

@@ -21,13 +21,13 @@
     // Do any additional setup after loading the view, typically from a nib.
 //    NSLog(@"%@",[user dc_PropertiesDetailDictionary]);
 //    [user dc_PropertiesDetailDictionary];
-     BOOL theBool = YES;
+    BOOL theBool = YES;
     NSDictionary *dic = @{
                           @"theBOOL" : @(theBool)
                           };
     NSError *error = nil;
-    user *theUser = [[user alloc] dc_convertToModelFromDictionary:dic error:&error];
-   
+    user *theUser = [[user alloc] dc_initObjectFromDictionary:dic error:&error];
+    
    
     
 

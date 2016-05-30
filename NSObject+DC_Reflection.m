@@ -9,22 +9,30 @@
 #import "NSObject+DC_Reflection.h"
 #import "NSObject+DC_Properties.h"
 @implementation NSObject (DC_Reflection)
-- (instancetype)dc_convertToModelFromDictionary:(NSDictionary *)dictionary error:(NSError **)error
+- (instancetype)dc_initObjectFromDictionary:(NSDictionary *)dictionary error:(NSError **)error
 {
     NSObject *object = [self init];
     if (object) {
-        [[self class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key,NSString *className ,BOOL *stop) {
+        [[self class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
             id value = [dictionary objectForKey:key];
-            BOOL isSuccess = [self dc_validateValueForKey:key Value:value Error:error];
-            if (isSuccess) {
-                NSLog(@"can convert to");
-            }
+            [self dc_tryValidateAndSetValue:value forKey:key className:className];
         }];
     }
     return object;
 }
 
-- (BOOL)dc_validateValueForKey:(NSString *)key Value:(id)value Error:(NSError **)error
+- (void)dc_tryValidateAndSetValue:(id)value forKey:(NSString *)key className:(NSString *)className
+{
+    @try {
+        [self setValue:value forKey:key];
+    } @catch (NSException *exception) {
+        NSLog(@"the key is %@, the value is %@",key,value);
+    } @finally {
+        
+    }
+}
+
+- (BOOL)dc_validateValue:(id)value forKey:(NSString *)key Error:(NSError **)error
 {
     if ([value isEqual:[NSNull null]]) {
         return NO;
@@ -37,6 +45,11 @@
     NSDictionary *propertyDictionary = [[self class] dc_propertiesDetailDictionary];
     NSArray *keysList = [propertyDictionary allKeys];
     return [self dictionaryWithValuesForKeys:keysList];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@",[self dc_convertToDictionaryFromModel]];
 }
 
 + (void)dc_setClassReflectIngoredList:(NSArray *)ingoredList
