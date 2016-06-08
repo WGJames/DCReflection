@@ -97,7 +97,7 @@ static void *DCBasicTypesDictionary = (void *)@"DCBasicTypesDictionary";
         NSArray *attributeArray = @[@"i",@"s",@"f",@"d",@"q",@"c",@"b"];
         NSArray *typesArray = @[@"int",@"short",@"float",@"double",@"long",@"char",@"BOOL"];
         NSDictionary *basicTypesDictionary = [NSDictionary dictionaryWithObjects:typesArray forKeys:attributeArray];
-        objc_setAssociatedObject(self, DCPropertiesDictionary, basicTypesDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, DCBasicTypesDictionary, basicTypesDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         return basicTypesDictionary;
     } else {
         return typesDictionary;

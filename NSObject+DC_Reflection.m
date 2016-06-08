@@ -14,7 +14,10 @@
     NSObject *object = [self init];
     if (object) {
         [[self class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
-            id value = [dictionary objectForKey:key];
+            __autoreleasing id value = [dictionary objectForKey:key];
+            if ([value isEqual:[NSNull null]]) {
+                value = nil;
+            }
             [self dc_tryValidateAndSetValue:value forKey:key className:className];
         }];
     }
@@ -23,23 +26,49 @@
 
 - (void)dc_tryValidateAndSetValue:(id)value forKey:(NSString *)key className:(NSString *)className
 {
+    __autoreleasing id validateValue = value;
+    NSError *error = nil;
     @try {
-        [self setValue:value forKey:key];
+        if ([self validateValue:&validateValue forKey:key error:&error]) {
+            [self dc_setValue:validateValue forKey:key];
+        } else {
+            NSLog(@"the error is %@",error);
+        }
     } @catch (NSException *exception) {
-        NSLog(@"the key is %@, the value is %@",key,value);
-    } @finally {
-        
+        NSLog(@"----catch the exception is %@",exception);
     }
 }
 
-- (BOOL)dc_validateValue:(id)value forKey:(NSString *)key Error:(NSError **)error
+- (void)dc_setValue:(id)value forKey:(NSString *)key
 {
-    if ([value isEqual:[NSNull null]]) {
-        return NO;
+    NSString *className = [[[self class] dc_propertiesDetailDictionary] objectForKey:key];
+    Class targetClass = NSClassFromString(className);
+    if ([value isKindOfClass:targetClass]) {
+        [self setValue:value forKey:key];
+    } else {
+        [self dc_autoMappingWithValue:value targetClassName:className forKey:key];
     }
-    return [self validateValue:&value forKey:key error:error];
 }
 
+- (void)dc_autoMappingWithValue:(id)value targetClassName:(NSString *)targetClassName forKey:(NSString *)key
+{
+    __autoreleasing id targetValue;
+    if ([targetClassName isEqualToString:@"NSString"]) {
+        SEL stringSelector = NSSelectorFromString(@"stringValue");
+        if ([value respondsToSelector:stringSelector]) {
+            targetValue = [value performSelector:stringSelector];
+        }
+    } else if ([targetClassName isEqualToString:@"NSNumber"]) {
+        
+    } else if ([[self class] dc_validateClassIsBasicType:targetClassName]) {
+        if ([value isKindOfClass:[NSNumber class]]) {
+            targetValue = value;
+        }
+    }
+    if (targetValue) {
+        [self setValue:targetValue forKey:key];
+    }
+}
 - (NSDictionary *)dc_convertToDictionaryFromModel
 {
     NSDictionary *propertyDictionary = [[self class] dc_propertiesDetailDictionary];
@@ -72,4 +101,6 @@
     
 }
 
+
 @end
+

@@ -23,12 +23,16 @@
 //    [user dc_PropertiesDetailDictionary];
     BOOL theBool = YES;
     NSDictionary *dic = @{
-                          @"theBOOL" : @(theBool)
-                          };
+                          @"theBOOL" : @(theBool),
+                          @"theNull" : @"theNull",
+                          @"user_id" : @"12321312asdasd",
+                          @"user_name" : @12321312,
+                          @"theInt" : @"2132132"
+                        };
     NSError *error = nil;
     user *theUser = [[user alloc] dc_initObjectFromDictionary:dic error:&error];
-    
-   
+    theUser.user_name.length;
+    NSLog(@"%@",theUser);
     
 
 }
