@@ -25,15 +25,16 @@
     NSDictionary *dic = @{
                           @"theBOOL" : @(theBool),
                           @"theNull" : @"theNull",
-                          @"user_id" : @"12321312asdasd",
+                          @"user_id" : @"123adas",
                           @"user_name" : @12321312,
                           @"theInt" : @"2132132"
                         };
     NSError *error = nil;
     user *theUser = [[user alloc] dc_initObjectFromDictionary:dic error:&error];
-    theUser.user_name.length;
+//    theUser.user_name.length;
     NSLog(@"%@",theUser);
     
+    [theUser dc_convertToDictionaryFromModel];
 
 }
 

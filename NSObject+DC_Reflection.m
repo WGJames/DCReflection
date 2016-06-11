@@ -8,7 +8,18 @@
 
 #import "NSObject+DC_Reflection.h"
 #import "NSObject+DC_Properties.h"
+#import "DCValueTransformer.h"
+#import "DCValueTransformer+Addtional.h"
+
 @implementation NSObject (DC_Reflection)
++ (void)load
+{
+    @autoreleasepool {
+        [DCValueTransformer dc_registerNSNumberToNSStringValueTransformer];
+        [DCValueTransformer dc_registerNSStringToNSNumberValueTransformer];
+    }
+}
+
 - (instancetype)dc_initObjectFromDictionary:(NSDictionary *)dictionary error:(NSError **)error
 {
     NSObject *object = [self init];
@@ -52,21 +63,17 @@
 
 - (void)dc_autoMappingWithValue:(id)value targetClassName:(NSString *)targetClassName forKey:(NSString *)key
 {
-    __autoreleasing id targetValue;
-    if ([targetClassName isEqualToString:@"NSString"]) {
-        SEL stringSelector = NSSelectorFromString(@"stringValue");
-        if ([value respondsToSelector:stringSelector]) {
-            targetValue = [value performSelector:stringSelector];
-        }
-    } else if ([targetClassName isEqualToString:@"NSNumber"]) {
-        
-    } else if ([[self class] dc_validateClassIsBasicType:targetClassName]) {
-        if ([value isKindOfClass:[NSNumber class]]) {
-            targetValue = value;
-        }
+    NSValueTransformer *valueTransformer = nil;
+    if ([value isKindOfClass:[NSString class]] && [targetClassName isEqualToString:@"NSNumber"]) {
+        valueTransformer = [NSValueTransformer valueTransformerForName:DCNSStringToNSNumberTransformerName];
+    } else if ([value isKindOfClass:[NSNumber class]] && [targetClassName isEqualToString:@"NSString"]) {
+        valueTransformer = [NSValueTransformer valueTransformerForName:DCNSNumberToNSStringTransformerName];
+    } else {
+        NSLog(@"the value class is %@ and the target class is %@", [value class], targetClassName);
     }
-    if (targetValue) {
-        [self setValue:targetValue forKey:key];
+    if (valueTransformer != nil) {
+        id forwardValue = [valueTransformer transformedValue:value];
+        [self setValue:forwardValue forKey:key];
     }
 }
 - (NSDictionary *)dc_convertToDictionaryFromModel
@@ -80,27 +87,6 @@
 {
     return [NSString stringWithFormat:@"%@",[self dc_convertToDictionaryFromModel]];
 }
-
-+ (void)dc_setClassReflectIngoredList:(NSArray *)ingoredList
-{
-    
-}
-
-+ (void)dc_setClassReflectAllowedList:(NSArray *)allowrdList
-{
-    
-}
-
-- (void)dc_setObjectReflectIngoredList:(NSArray *)ingoredList
-{
-    
-}
-
-- (void)dc_setObjectReflectAllowedList:(NSArray *)allowedList
-{
-    
-}
-
 
 @end
 
