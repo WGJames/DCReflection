@@ -11,6 +11,9 @@
 #import "DCValueTransformer.h"
 #import "DCValueTransformer+Addtional.h"
 
+typedef NS_ENUM(NSInteger, DCORMErrorCode) {
+    DCORMValueIsNSNullCode = -11000,
+};
 @implementation NSObject (DC_Reflection)
 + (void)load
 {
@@ -20,15 +23,12 @@
     }
 }
 
-- (instancetype)dc_initObjectFromDictionary:(NSDictionary *)dictionary error:(NSError **)error
+- (instancetype)dc_initObjectFromDictionary:(NSDictionary *)dictionary
 {
     NSObject *object = [self init];
     if (object) {
         [[self class] dc_enumerateKeysAndClassNameUsingBlock:^(NSString *key, NSString *className, BOOL *stop) {
             __autoreleasing id value = [dictionary objectForKey:key];
-            if ([value isEqual:[NSNull null]]) {
-                value = nil;
-            }
             [self dc_tryValidateAndSetValue:value forKey:key className:className];
         }];
     }
@@ -50,12 +50,29 @@
     }
 }
 
+- (BOOL)validateValue:(id *)ioValue forKey:(NSString *)inKey error:(NSError **)outError
+{
+    __autoreleasing id validateValue = *ioValue;
+    if ([validateValue isEqual:[NSNull null]]) {
+        NSString *description = [NSString stringWithFormat:@"the key is %@ and the value is NSNull",inKey];
+        NSDictionary *userInfo = @{
+                                   NSLocalizedDescriptionKey: description
+                                   };
+        *outError = [NSError errorWithDomain:@"value is NSNull" code:DCORMValueIsNSNullCode userInfo:userInfo];
+        return NO;
+    }
+    return YES;
+}
+
 - (void)dc_setValue:(id)value forKey:(NSString *)key
 {
     NSString *className = [[[self class] dc_propertiesDetailDictionary] objectForKey:key];
     Class targetClass = NSClassFromString(className);
     if ([value isKindOfClass:targetClass]) {
         [self setValue:value forKey:key];
+    } else if ([value isKindOfClass:[NSDictionary class]]) {
+        id objectValue = [[targetClass alloc] dc_initObjectFromDictionary:value];
+        [self setValue:objectValue forKey:key];
     } else {
         [self dc_autoMappingWithValue:value targetClassName:className forKey:key];
     }
@@ -76,6 +93,7 @@
         [self setValue:forwardValue forKey:key];
     }
 }
+
 - (NSDictionary *)dc_convertToDictionaryFromModel
 {
     NSDictionary *propertyDictionary = [[self class] dc_propertiesDetailDictionary];

@@ -21,6 +21,7 @@
 		1A346C8E1CFA8ACF0064908C /* NSObject+DC_JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A346C8D1CFA8ACF0064908C /* NSObject+DC_JSON.m */; };
 		1A5E0C101D0A92DB00BB33C2 /* DCValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E0C0F1D0A92DB00BB33C2 /* DCValueTransformer.m */; };
 		1AB8A4571D0AF03E007F930E /* DCValueTransformer+Addtional.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB8A4561D0AF03E007F930E /* DCValueTransformer+Addtional.m */; };
+		1AB8A45A1D0BE931007F930E /* car.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB8A4591D0BE931007F930E /* car.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		1A5E0C0F1D0A92DB00BB33C2 /* DCValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCValueTransformer.m; sourceTree = "<group>"; };
 		1AB8A4551D0AF03E007F930E /* DCValueTransformer+Addtional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DCValueTransformer+Addtional.h"; sourceTree = "<group>"; };
 		1AB8A4561D0AF03E007F930E /* DCValueTransformer+Addtional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DCValueTransformer+Addtional.m"; sourceTree = "<group>"; };
+		1AB8A4581D0BE931007F930E /* car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = car.h; sourceTree = "<group>"; };
+		1AB8A4591D0BE931007F930E /* car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = car.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 		1A05A0951CE36D0C000825DA = {
 			isa = PBXGroup;
 			children = (
+				1AB8A4581D0BE931007F930E /* car.h */,
+				1AB8A4591D0BE931007F930E /* car.m */,
 				1AB8A4551D0AF03E007F930E /* DCValueTransformer+Addtional.h */,
 				1AB8A4561D0AF03E007F930E /* DCValueTransformer+Addtional.m */,
 				1A5E0C0E1D0A92DB00BB33C2 /* DCValueTransformer.h */,
@@ -193,6 +198,7 @@
 				1A05A0A61CE36D0C000825DA /* AppDelegate.m in Sources */,
 				1A05A0A31CE36D0C000825DA /* main.m in Sources */,
 				1A05A0AF1CE36D0C000825DA /* DC_ORM.xcdatamodeld in Sources */,
+				1AB8A45A1D0BE931007F930E /* car.m in Sources */,
 				1A346C881CF9398F0064908C /* NSObject+DC_Coding.m in Sources */,
 				1A05A0DF1CE8606F000825DA /* NSObject+DC_Reflection.m in Sources */,
 				1A05A0DC1CE3799D000825DA /* user.m in Sources */,

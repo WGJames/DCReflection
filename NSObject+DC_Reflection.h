@@ -10,7 +10,7 @@
 
 @interface NSObject (DC_Reflection)
 
-- (instancetype)dc_initObjectFromDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+- (instancetype)dc_initObjectFromDictionary:(NSDictionary *)dictionary;
 
 - (NSDictionary *)dc_convertToDictionaryFromModel;
 

@@ -47,16 +47,16 @@
     return self.forwardBlock(value, &success, &error);
 }
 
-- (id)transformedValue:(id)value Success:(BOOL *)outerSuccess Error:(NSError **)outerError
+- (id)transformedValue:(id)value Success:(BOOL *)outSuccess Error:(NSError **)outError
 {
     NSError *error = nil;
     BOOL success = YES;
     id transformedValue = self.forwardBlock(value, &success, &error);
-    if (outerSuccess != NULL) {
-        *outerSuccess = success;
+    if (outSuccess != NULL) {
+        *outSuccess = success;
     }
-    if (outerError != NULL) {
-        *outerError = error;
+    if (outError != NULL) {
+        *outError = error;
     }
     return transformedValue;
 }
@@ -104,7 +104,6 @@
         *outerError = error;
     }
     return transformedValue;
-    
 }
 
 @end

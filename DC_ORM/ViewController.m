@@ -26,13 +26,20 @@
                           @"theBOOL" : @(theBool),
                           @"theNull" : @"theNull",
                           @"user_id" : @"123adas",
-                          @"user_name" : @12321312,
-                          @"theInt" : @"2132132"
+                          @"user_name" : @{
+                                  @"car_id": @1234,
+                                  @"car_name" : @"polo"
+                                  },
+                          @"theInt" : @"2132132",
+                          @"theCar" : @{
+                                    @"car_id": @1234,
+                                    @"car_name" : [NSNull null]
+                                  }
                         };
     NSError *error = nil;
-    user *theUser = [[user alloc] dc_initObjectFromDictionary:dic error:&error];
+    user *theUser = [[user alloc] dc_initObjectFromDictionary:dic];
 //    theUser.user_name.length;
-    NSLog(@"%@",theUser);
+    NSLog(@"%@",theUser.theCar);
     
     [theUser dc_convertToDictionaryFromModel];
 
