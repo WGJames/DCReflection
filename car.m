@@ -11,6 +11,7 @@
 @implementation car
 - (BOOL)validateValue:(inout id  _Nullable __autoreleasing *)ioValue forKey:(NSString *)inKey error:(out NSError * _Nullable __autoreleasing *)outError
 {
+    NSLog(@"123");
     return [super validateValue:ioValue forKey:inKey error:outError];
 }
 @end
