@@ -1,0 +1,62 @@
+st login: Sat Sep 24 17:20:06 on ttys001
+JamesChengs-iMac:NewProject.xcodeproj James$ cd ..
+JamesChengs-iMac:NewProject James$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+JamesChengs-iMac:NewProject James$ git relog
+git: 'relog' is not a git command. See 'git --help'.
+
+Did you mean this?
+	reflog
+JamesChengs-iMac:NewProject James$ git reflog
+76d3014 HEAD@{0}: checkout: moving from bugfix to master
+279371e HEAD@{1}: checkout: moving from develop to bugfix
+76d3014 HEAD@{2}: pull origin master: Fast-forward
+7631ddc HEAD@{3}: reset: moving to 7631ddc
+80e3341 HEAD@{4}: checkout: moving from chengcheng to develop
+76d3014 HEAD@{5}: checkout: moving from develop to chengcheng
+80e3341 HEAD@{6}: checkout: moving from master to develop
+76d3014 HEAD@{7}: checkout: moving from bugfix to master
+279371e HEAD@{8}: checkout: moving from chengcheng to bugfix
+76d3014 HEAD@{9}: pull origin master: Fast-forward
+7631ddc HEAD@{10}: reset: moving to 7631ddccbbd62b9f2a856345b7c23751de327371
+03a2d32 HEAD@{11}: checkout: moving from develop to chengcheng
+80e3341 HEAD@{12}: checkout: moving from chengcheng to develop
+03a2d32 HEAD@{13}: checkout: moving from bugfix to chengcheng
+279371e HEAD@{14}: checkout: moving from master to bugfix
+76d3014 HEAD@{15}: checkout: moving from develop to master
+80e3341 HEAD@{16}: checkout: moving from bugfix to develop
+279371e HEAD@{17}: checkout: moving from chengcheng to bugfix
+03a2d32 HEAD@{18}: checkout: moving from develop to chengcheng
+80e3341 HEAD@{19}: checkout: moving from chengcheng to develop
+03a2d32 HEAD@{20}: checkout: moving from develop to chengcheng
+80e3341 HEAD@{21}: checkout: moving from master to develop
+ae074f2 HEAD@{22}: merge develop: Merge made by the 'recursive' strategy.
+JamesChengs-iMac:NewProject James$ 
+JamesChengs-iMac:NewProject James$ vim .gitignore
+
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xcuserstate
+".gitignore" 61L, 1352C
+
